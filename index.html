@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bonnaroo 2025 Artist Preference Sorter</title>
+    <!-- Google Fonts for Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Local CSS file -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="container">
+        <h1>Bonnaroo 2025 Artist Sorter</h1>
+        <div id="preference-table-container">
+            <table id="preference-table">
+                <thead>
+                    <tr>
+                        <th>Day</th>
+                        <th>Must See</th>
+                        <th>Want to</th>
+                        <th>Sure</th>
+                        <th>Pass</th>
+                        <th>Listen More</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <span>Thursday</span>
+                            <div class="progress-container"></div>
+                        </td>
+                        <td class="must-see" data-day="Thursday"></td>
+                        <td class="want-to-see" data-day="Thursday"></td>
+                        <td class="if-nothing" data-day="Thursday"></td>
+                        <td class="pass" data-day="Thursday"></td>
+                        <td class="listen-to" data-day="Thursday"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Friday</span>
+                            <div class="progress-container"></div>
+                        </td>
+                        <td class="must-see" data-day="Friday"></td>
+                        <td class="want-to-see" data-day="Friday"></td>
+                        <td class="if-nothing" data-day="Friday"></td>
+                        <td class="pass" data-day="Friday"></td>
+                        <td class="listen-to" data-day="Friday"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Saturday</span>
+                            <div class="progress-container"></div>
+                        </td>
+                        <td class="must-see" data-day="Saturday"></td>
+                        <td class="want-to-see" data-day="Saturday"></td>
+                        <td class="if-nothing" data-day="Saturday"></td>
+                        <td class="pass" data-day="Saturday"></td>
+                        <td class="listen-to" data-day="Saturday"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Sunday</span>
+                            <div class="progress-container"></div>
+                        </td>
+                        <td class="must-see" data-day="Sunday"></td>
+                        <td class="want-to-see" data-day="Sunday"></td>
+                        <td class="if-nothing" data-day="Sunday"></td>
+                        <td class="pass" data-day="Sunday"></td>
+                        <td class="listen-to" data-day="Sunday"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div id="artist-card" class="card">
+                <h2 id="artist-name"></h2>
+                <p id="day"> <span id="current-day"></span></p>
+            </div>
+        </div>
+        <div id="preference-boxes">
+            <div class="preference-box must-see" data-preference="Must See">Must See</div>
+            <div class="preference-box want-to-see" data-preference="Want to See">Want to</div>
+            <div class="preference-box if-nothing" data-preference="If Nothing Else Going On">Sure</div>
+            <div class="preference-box pass" data-preference="Pass">Pass</div>
+            <div class="preference-box listen-to" data-preference="Have to Listen To">Listen More</div>
+        </div>
+        <button id="submit-preferences">Submit Preferences</button>
+        <div id="result"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

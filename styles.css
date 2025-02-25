@@ -1,0 +1,341 @@
+/* Fallback font in case Poppins fails to load */
+body, html {
+    font-family: 'Arial', sans-serif; /* Default fallback */
+}
+
+body {
+    font-family: 'Poppins', sans-serif; /* Modern, clean sans-serif font */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Allow vertical scrolling */
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #1a1a1a, #2d2d2d); /* Dark gradient background for modern contrast */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+#container {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.95); /* Semi-transparent white for a premium look */
+    padding: 0px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Enhanced shadow for depth */
+    max-width: 1200px;
+    width: 90%;
+    backdrop-filter: blur(5px); /* Frosted glass effect */
+    border: 2px solid #4CAF50; /* Subtle green border for branding */
+    margin-top: 0px; /* Add margin to ensure content isn’t cut off at the top */
+}
+
+h1 {
+    color: #2c3e50;
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#preference-table-container {
+    position: relative;
+    margin: 30px 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+#preference-table {
+    width: 100%;
+    max-width: 1000px;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 30px;
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    table-layout: fixed; /* Ensure consistent column widths */
+    z-index: 1; /* Ensure table is below the card */
+}
+
+#preference-table th, #preference-table td {
+    border: 2px solid #000 !important; /* Force black stroke border */
+    padding: 12px; /* Reduced padding for tighter fit */
+    text-align: center;
+    font-size: 1em; /* Reduced base font size for table headers */
+    font-weight: 500;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#preference-table th {
+    background: linear-gradient(45deg, #4CAF50, #45a049); /* Gradient for headers */
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.must-see { background-color: #4CAF50; color: white; }
+.want-to-see { background-color: #ffcf31; color: #ffffff; }
+.if-nothing { background-color: #FF9800; color: white; }
+.pass { background-color: #c80000; color: white; }
+.listen-to { background-color: #c453d7; color: white; }
+
+.selected {
+    outline: 4px solid #4CAF50; /* Green outline for branding */
+    transform: scale(1.05); /* Slight scale for emphasis */
+    animation: pulse 1.5s infinite; /* Cool pulsing animation */
+}
+
+@keyframes pulse {
+    0% { outline-width: 4px; outline-offset: 0; }
+    50% { outline-width: 6px; outline-offset: 2px; opacity: 0.7; }
+    100% { outline-width: 4px; outline-offset: 0; opacity: 1; }
+}
+
+
+/* Reduced font sizes for artist names, maintaining proportionality */
+.large { font-size: 1.2em; font-weight: 800; text-transform: uppercase; line-height: 1.1; } /* Close to zero line spacing */
+.medium { font-size: 1em; font-weight: 700; text-transform: uppercase; line-height: 1; }
+.small { font-size: 0.8em; font-weight: 600; text-transform: uppercase; line-height: .9; }
+
+.card {
+    width: 300px; /* Adjust the width as needed */
+    max-height: 20vh; /* Adjust the max height as needed */
+    padding: 10px;
+    background: white; /* Add background color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
+    border-radius: 8px; /* Add border radius */
+    text-align: center; /* Center the text */
+    z-index: 1000;
+    border: 0px solid #4CAF50; /* Green border for branding */
+    padding: 0px; /* Reduced padding for smaller card */
+    border-radius: 12px; /* Slightly smaller radius */
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3); /* Adjusted drop shadow */
+    background: linear-gradient(135deg, #ffffff, #f5f7fa); /* Subtle gradient for card */
+    position: absolute;
+    top: 10%; /* Adjusted position above the table */
+    transform: translateX(-50%); /* Centered horizontally over the table */
+    width: 250px; /* Smaller width for the name card */
+    z-index: 1000; /* Ensure card is above the table */
+    transition: left 0.3s ease, box-shadow 0.3s; /* Smooth animations */
+    animation: float 8s infinite ease-in-out; /* Subtle floating animation */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center contents vertically */
+    justify-content: center;
+}
+
+#artist-name {
+    padding: -10px;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-10px); }
+}
+
+/* Move progress bar to fill the day box */
+#day {
+    position: relative;
+    margin: 0;
+    padding: 0px 0px; /* Adjusted padding for tighter fit */
+    border-radius: 6px;
+    background: #e0e0e0; /* Light gray background for contrast */
+    overflow: hidden;
+}
+
+#day::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: linear-gradient(to right, #4CAF50, #45a049); /* Green gradient */
+    width: 0%; /* Will be updated via JavaScript */
+    transition: width 0.3s ease; /* Smooth fill animation */
+    z-index: 1; /* Ensure it’s behind the text */
+}
+
+#day span {
+    position: relative;
+    z-index: 2; /* Ensure text is above the progress bar */
+    color: #2c3e50;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* Genre styling in the name card */
+.genres {
+    font-size: 0.75em; /* Smaller font for genres */
+    color: #666; /* Subtle gray for genres */
+    font-weight: 500;
+    margin-top: 0px; /* Space between name and genres */
+    text-transform: none; /* Keep genres lowercase for readability */
+}
+
+.flash {
+    animation: glow 2s infinite alternate; /* Flash effect for new day */
+}
+
+@keyframes glow {
+    0% { box-shadow: 0 0 5px #4CAF50, 0 0 10px #4CAF50; color: #4CAF50; }
+    100% { box-shadow: 0 0 10px #4CAF50, 0 0 20px #4CAF50; color: white; }
+}
+
+#preference-boxes {
+    margin: 30px 0;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    padding: 5px;
+    background: rgba(76, 175, 80, 0.1); /* Subtle green background for flair */
+    border-radius: 10px;
+}
+
+.preference-box {
+    display: inline-block;
+    padding: 14px 28px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+    font-size: 1.1em;
+    font-weight: 600;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: rgba(6, 6, 6, 0.9); /* Slight transparency for modern look */
+    border: 2px solid #4CAF50; /* Green border for consistency */
+}
+
+.preference-box:hover {
+    transform: scale(1.1);
+    background-color: rgba(76, 175, 80, 0.2); /* Green hover effect */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+button {
+    padding: 14px 28px;
+    font-size: 1.1em;
+    background: linear-gradient(45deg, #4CAF50, #45a049); /* Gradient button */
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background: linear-gradient(45deg, #45a049, #3d8b40);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+#result {
+    margin-top: 30px;
+    font-size: 1.2em;
+    color: #2c3e50;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+a {
+    color: #4CAF50;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #45a049;
+}
+
+.progress-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #e0e0e0;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(to right, #2e7d32, #4CAF50);
+    display: flex;
+    flex-direction: row;
+}
+
+.progress-bar::before {
+    content: '';
+    display: block;
+    width: 20%;
+    background: #2e7d32;
+}
+
+.progress-bar::after {
+    content: '';
+    display: block;
+    width: 20%;
+    background: #4CAF50;
+}
+
+/* Add media queries for smaller screens */
+@media (max-width: 375px) { /* iPhone SE screen size */
+    h1 {
+        font-size: 1.8em;
+        margin-bottom: 20px;
+    }
+
+    #preference-table th, #preference-table td {
+        font-size: 0.8em;
+        padding: 8px;
+    }
+
+    .large {
+        font-size: 1em;
+    }
+
+    .medium {
+        font-size: 0.9em;
+    }
+
+    .small {
+        font-size: 0.7em;
+    }
+
+    .preference-box {
+        font-size: 0.9em;
+        padding: 10px 20px;
+    }
+
+    button {
+        font-size: 0.9em;
+        padding: 10px 20px;
+    }
+
+    #result {
+        font-size: 1em;
+    }
+
+    .card {
+        width: 90%; /* Adjust the width for mobile */
+        max-height: 15vh; /* Maximum height of 15% of the viewport height */
+        padding: 0px;
+        background: none; /* Remove background */
+        box-shadow: none; /* Remove shadow */
+        position: fixed; /* Make the card sticky */
+        top: 0; /* Stick to the top */
+        left: 0;
+        transform: none; /* Remove transform */
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center contents vertically */
+    }
+
+    .genres {
+        font-size: 0.6em;
+    }
+}
